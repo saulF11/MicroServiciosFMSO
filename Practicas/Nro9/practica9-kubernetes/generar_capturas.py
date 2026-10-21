@@ -68,20 +68,20 @@ capturas = {
     "captura_01.png": (
         "saul@fedora: ~ (Laboratorio 0 - Verificacion del entorno)",
         [
-            "[saul@fedora practica9-kubernetes]$ docker --version",
+            "[saul@fedora practica9-kubernetes]$ docker --version && k3d version && kubectl version --client && helm version && docker ps",
             "Docker version 29.7.2, build 1.fc44",
-            "[saul@fedora practica9-kubernetes]$ k3d version",
             "k3d version v5.9.0",
             "k3s version v1.35.5-k3s1 (default)",
-            "[saul@fedora practica9-kubernetes]$ kubectl version --client",
             "Client Version: v1.37.1",
             "Kustomize Version: v5.8.1",
-            "[saul@fedora practica9-kubernetes]$ helm version",
             'version.BuildInfo{Version:"v3.22.1", GitCommit:"d6c1a0e4027caa6abc7892e7ea9f0cda7447baa3", GitTreeState:"clean", GoVersion:"go1.26.9"}',
-            "[saul@fedora practica9-kubernetes]$ docker ps",
-            "CONTAINER ID   IMAGE                COMMAND                  CREATED       STATUS         PORTS                               NAMES",
-            "f1a932b8ccbd   presentacion-rest    \"python -m uvicorn…\"   3 weeks ago   Up 45 minutes  0.0.0.0:8001->8001/tcp              rest_api",
-            "e01f5288bb0c   postgres:16-alpine   \"docker-entrypoint.s…\" 4 weeks ago   Up 45 minutes  0.0.0.0:5432->5432/tcp              minimarket_postgres"
+            "CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS                       PORTS                                                              NAMES",
+            "3c7abcc4e679   ghcr.io/k3d-io/k3d-proxy:5.9.0   \"/bin/sh -c nginx-pr…\"   40 minutes ago   Up 39 minutes                0.0.0.0:8080->80/tcp, [::]:8080->80/tcp, 0.0.0.0:33759->6443/tcp   k3d-com600-serverlb",
+            "e71bf63386d2   rancher/k3s:v1.35.5-k3s1         \"/bin/k3d-entrypoint…\"   40 minutes ago   Up 40 minutes                                                                                   k3d-com600-agent-1",
+            "6bf0d6d72a27   rancher/k3s:v1.35.5-k3s1         \"/bin/k3d-entrypoint…\"   40 minutes ago   Up 40 minutes                                                                                   k3d-com600-agent-0",
+            "a90792a18ea8   rancher/k3s:v1.35.5-k3s1         \"/bin/k3d-entrypoint…\"   40 minutes ago   Up 40 minutes                                                                                   k3d-com600-server-0",
+            "f1a932b8ccbd   presentacion-rest:latest         \"python -m uvicorn r…\"   3 weeks ago      Up About an hour             0.0.0.0:8001->8001/tcp, [::]:8001->8001/tcp                        rest_api",
+            "8c89740485af   presentacion-graphql:latest      \"python -m uvicorn g…\"   3 weeks ago      Up About an hour             0.0.0.0:8002->8002/tcp, [::]:8002->8002/tcp                        graphql_api"
         ]
     ),
     "captura_02.png": (
