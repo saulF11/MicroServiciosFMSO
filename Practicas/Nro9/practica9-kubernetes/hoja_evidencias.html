@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Práctica N.º 9 — Hoja de Evidencias</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1.8cm 1.5cm;
+  }
+  body {
+    font-family: 'Liberation Sans', 'Segoe UI', Arial, sans-serif;
+    color: #2e3440;
+    line-height: 1.45;
+    font-size: 10.5pt;
+  }
+  h1 {
+    font-size: 15pt;
+    text-align: center;
+    color: #1a365d;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  h2 {
+    font-size: 12pt;
+    text-align: center;
+    color: #2b6cb0;
+    margin: 0 0 16px 0;
+    font-weight: 600;
+  }
+  h3 {
+    font-size: 11pt;
+    color: #2c5282;
+    border-bottom: 2px solid #cbd5e0;
+    padding-bottom: 4px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .header-box {
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 16px;
+    background-color: #f8fafc;
+  }
+  table.meta {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+  }
+  table.meta td {
+    padding: 4px 6px;
+    vertical-align: top;
+  }
+  table.meta td.label {
+    font-weight: bold;
+    color: #4a5568;
+    width: 25%;
+  }
+  table.meta td.val {
+    color: #1a202c;
+    width: 75%;
+  }
+  .checklist {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 9pt;
+  }
+  .checklist th, .checklist td {
+    border: 1px solid #cbd5e0;
+    padding: 6px 10px;
+    text-align: left;
+  }
+  .checklist th {
+    background-color: #edf2f7;
+    color: #2d3748;
+  }
+  .center {
+    text-align: center !important;
+  }
+  .capture-box {
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .capture-title {
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 6px;
+    font-size: 10pt;
+  }
+  .capture-img {
+    width: 100%;
+    max-width: 720px;
+    border: 1px solid #4a5568;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: block;
+    margin: 0 auto;
+  }
+  .question-box {
+    background-color: #f7fafc;
+    border-left: 4px solid #3182ce;
+    padding: 10px 14px;
+    margin: 14px 0 22px 0;
+    page-break-inside: avoid;
+  }
+  .question-title {
+    font-weight: bold;
+    color: #2b6cb0;
+    margin-bottom: 6px;
+  }
+  .question-answer {
+    color: #2d3748;
+    text-align: justify;
+  }
+  .closure-box {
+    border: 1px solid #e2e8f0;
+    background-color: #ffffff;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+<h1>Universidad Mayor, Real y Pontificia de San Francisco Xavier de Chuquisaca</h1>
+<h2>Facultad de Ciencia y Tecnología &middot; COM-600 Microservicios &middot; Gestión 2/2026</h2>
+<h1 style="color: #2b6cb0; font-size: 13pt;">PRÁCTICA N.º 9 — HOJA DE EVIDENCIAS</h1>
+<p style="text-align:center; font-weight: bold; margin-bottom: 14px;">Despliegue en Kubernetes con Helm y GitOps</p>
+
+<div class="header-box">
+  <table class="meta">
+    <tr>
+      <td class="label">Nombre y apellidos:</td>
+      <td class="val">Flores Mosquera Saul Osvaldo</td>
+    </tr>
+    <tr>
+      <td class="label">Código universitario (CU):</td>
+      <td class="val">35-5854</td>
+    </tr>
+    <tr>
+      <td class="label">Carrera y paralelo:</td>
+      <td class="val">Ing. de Sistemas</td>
+    </tr>
+    <tr>
+      <td class="label">Fecha de entrega:</td>
+      <td class="val">21 de Octubre de 2026</td>
+    </tr>
+    <tr>
+      <td class="label">Sistema operativo y versiones:</td>
+      <td class="val">Fedora Linux (Kernel 6.19.8-3.surface.fc42.x86_64) &middot; Docker v29.7.2 &middot; k3d v5.9.0 &middot; kubectl v1.37.1 &middot; Helm v3.22.1</td>
+    </tr>
+    <tr>
+      <td class="label">Repositorio (URL):</td>
+      <td class="val"><a href="https://github.com/saulF11/MicroServiciosFMSO.git">https://github.com/saulF11/MicroServiciosFMSO.git</a></td>
+    </tr>
+  </table>
+</div>
+
+<h3>Control de avance</h3>
+<table class="checklist">
+  <thead>
+    <tr>
+      <th>Laboratorio</th>
+      <th class="center">Capturas</th>
+      <th class="center">Preguntas</th>
+      <th class="center">Completado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Laboratorio 0 — Verificación del entorno y creación del clúster</td>
+      <td class="center">1, 2</td>
+      <td class="center">1</td>
+      <td class="center"><b>[ X ]</b></td>
+    </tr>
+    <tr>
+      <td>Laboratorio 1 — El despliegue imperativo y por qué no sirve</td>
+      <td class="center">3, 4</td>
+      <td class="center">2</td>
+      <td class="center"><b>[ X ]</b></td>
+    </tr>
+    <tr>
+      <td>Laboratorio 2 — Manifiestos declarativos: Deployment y Service</td>
+      <td class="center">5, 6, 7</td>
+      <td class="center">3</td>
+      <td class="center"><b>[ X ]</b></td>
+    </tr>
+    <tr>
+      <td>Laboratorio 3 — Publicar hacia afuera con Ingress</td>
+      <td class="center">8, 9</td>
+      <td class="center">4</td>
+      <td class="center"><b>[ X ]</b></td>
+    </tr>
+    <tr>
+      <td>Laboratorio 4 — Configuración y secretos fuera de la imagen</td>
+      <td class="center">10, 11, 12</td>
+      <td class="center">5</td>
+      <td class="center"><b>[ X ]</b></td>
+    </tr>
+    <tr>
+      <td>Laboratorio 5 — Sondas de salud y actualización progresiva</td>
+      <td class="center">13, 14, 15</td>
+      <td class="center">6</td>
+      <td class="center"><b>[ X ]</b></td>
+    </tr>
+    <tr>
+      <td>Laboratorio 6 — Empaquetar la aplicación con Helm</td>
+      <td class="center">16, 17</td>
+      <td class="center">7</td>
+      <td class="center"><b>[ X ]</b></td>
+    </tr>
+    <tr>
+      <td>Laboratorio 7 — GitOps con Argo CD</td>
+      <td class="center">18, 19, 20</td>
+      <td class="center">8</td>
+      <td class="center"><b>[ X ]</b></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h3>PARTE 1 — EVIDENCIAS DE LOS LABORATORIOS</h3>
+
+<h4>Laboratorio 0 — Verificación del entorno y creación del clúster</h4>
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 1: salida de los cinco comandos anteriores en su terminal, con las versiones visibles.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_01.png" alt="Captura 1" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 2: salida de kubectl get nodes con los tres nodos en Ready y el nombre del contexto actual.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_02.png" alt="Captura 2" />
+</div>
+
+<div class="question-box">
+  <div class="question-title">Pregunta N.º 1: Los tres nodos que acaba de ver son en realidad contenedores de Docker corriendo en su máquina. ¿Qué diferencia hay entre este clúster y uno de producción, y qué cosas de esta práctica seguirían siendo válidas allá?</div>
+  <div class="question-answer">
+    <b>Diferencias con un entorno de producción:</b>
+    <ol>
+      <li><b>Aislamiento e infraestructura subyacente:</b> En <code>k3d</code> los nodos son contenedores Docker ligeros compartiendo el mismo kernel, CPU y disco de la máquina anfitriona. Si el host físico colapsa, caen todos los nodos a la vez. En producción, cada nodo es un servidor físico dedicado (Bare-Metal) o una máquina virtual (AWS EC2, GCP Compute Engine) alojada en diferentes zonas de disponibilidad geográficas, con redes físicas y discos distribuidos (CSI / EBS / Ceph) independientes.</li>
+      <li><b>Arquitectura del plano de control:</b> <code>k3s</code> agrupa el API server, scheduler y controller-manager en un único proceso optimizado con una base SQLite/etcd embebida. En producción se utiliza un clúster de alta disponibilidad de <code>etcd</code> (3 o 5 réplicas distribuidas) y múltiples API servers redundantes tras balanceadores de nivel 4.</li>
+      <li><b>Integraciones de red y seguridad:</b> Un clúster de producción cuenta con CNI empresarial (Cilium, Calico) con soporte de NetworkPolicies a nivel de kernel e integración nativa con balanceadores de carga en la nube (AWS NLB, GCP Cloud Load Balancer) y certificados SSL gestionados por <code>cert-manager</code>.</li>
+    </ol>
+    <b>Aspectos plenamente válidos en producción:</b>
+    <p>Todos los <b>manifiestos declarativos YAML</b> (Deployments, Services, Ingress, ConfigMaps, Secrets), la sintaxis de <code>kubectl</code>, las APIs de Kubernetes (<code>apps/v1</code>, <code>networking.k8s.io/v1</code>), las sondas de salud (readiness y liveness), las estrategias de despliegue progresivo (rolling updates), el empaquetado paramétrico con <b>Helm</b> y la reconciliación automatizada de <b>GitOps con Argo CD</b> son 100% idénticos e interoperables con cualquier clúster certificado por la CNCF en producción.</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h4>Laboratorio 1 — El despliegue imperativo y por qué no sirve</h4>
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 3: salida de kubectl get deployment,service,pods mostrando el pod en Running.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_03.png" alt="Captura 3" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 4: salida de kubectl get all después del borrado y de ls mostrando que no quedó ningún archivo.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_04.png" alt="Captura 4" />
+</div>
+
+<div class="question-box">
+  <div class="question-title">Pregunta N.º 2: Suponga que el clúster se pierde y hay que reconstruirlo tal como estaba. Con el enfoque imperativo, ¿de dónde saldría la información necesaria? Nombre dos consecuencias concretas de no tener el estado deseado escrito en un archivo versionado.</div>
+  <div class="question-answer">
+    <b>¿De dónde saldría la información necesaria?:</b>
+    <p>Con el enfoque imperativo, la información necesaria provendría exclusivamente de la memoria humana del operador, de notas dispersas o del historial volátil de la terminal (<code>~/.bash_history</code>). No existe un registro fidedigno ni persistente del estado de la infraestructura.</p>
+    <b>Dos consecuencias concretas:</b>
+    <ol>
+      <li><b>Pérdida de reproducibilidad y recuperación ante desastres (Disaster Recovery):</b> Si el clúster sufre una caída total o se necesita duplicar el entorno para pruebas (Staging/QA), es casi imposible recrear con precisión exacta las etiquetas, puertos, réplicas, límites de memoria y variables de entorno que estaban configuradas, provocando tiempos de caída elevados y deriva de configuración (configuration drift).</li>
+      <li><b>Falta total de auditoría y colaboración en equipo:</b> Los comandos imperativos no pasan por un control de versiones (Git). No es posible realizar revisiones de código entre pares (Code Review / Pull Requests), no se sabe quién cambió qué ni cuándo, y resulta imposible revertir un cambio erróneo de forma atómica y segura.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h4>Laboratorio 2 — Manifiestos declarativos: Deployment y Service</h4>
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 5: salida de kubectl get pods -l app=tareas -o wide con las dos réplicas en Running y el nodo de cada una.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_05.png" alt="Captura 5" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 6: salida de kubectl apply del Service seguida de kubectl get endpoints tareas mostrando dos direcciones.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_06.png" alt="Captura 6" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 7: las cuatro réplicas en Running y la lista de endpoints del Service con cuatro direcciones.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_07.png" alt="Captura 7" />
+</div>
+
+<div class="question-box">
+  <div class="question-title">Pregunta N.º 3: Compare este laboratorio con el anterior. ¿Qué puede hacer ahora que antes era imposible, en términos de revisión por un compañero, de reconstrucción del entorno y de auditoría de quién cambió qué?</div>
+  <div class="question-answer">
+    <ol>
+      <li><b>Revisión por un compañero (Peer Review):</b> Al tener los manifiestos YAML formalizados en el repositorio, cualquier modificación (como escalar réplicas de 2 a 4) se propone mediante una rama y un Pull Request. El compañero puede inspeccionar el <code>diff</code> exacto, evaluar el impacto y aprobarlo colegiadamente antes de su aplicación en el clúster.</li>
+      <li><b>Reconstrucción del entorno (Idempotencia):</b> Con el enfoque declarativo, reconstruir el entorno completo ante cualquier contingencia se reduce a ejecutar <code>kubectl apply -f k8s/</code>. Kubernetes compara automáticamente el estado deseado contra el estado actual y realiza exclusivamente las mutaciones necesarias sin duplicar recursos ni fallar si ya existen.</li>
+      <li><b>Auditoría y trazabilidad histórica:</b> El historial de commits de Git (<code>git log</code>, <code>git blame</code>) provee un registro inmutable con fecha, autor, hash SHA-1 y justificación de cada cambio realizado en la infraestructura, eliminando los cambios manuales y no documentados.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h4>Laboratorio 3 — Publicar hacia afuera con Ingress</h4>
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 8: salida de kubectl get ingress mostrando el host tareas.localhost y la clase traefik.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_08.png" alt="Captura 8" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 9: el navegador mostrando la respuesta de la API en http://tareas.localhost:8080, con la barra de direcciones visible.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_09.png" alt="Captura 9" />
+</div>
+
+<div class="question-box">
+  <div class="question-title">Pregunta N.º 4: Recorra el camino completo de esa petición: desde el navegador hasta el proceso que la atiende, nombrando cada pieza que interviene. ¿Qué ocurriría si el Service quedara sin endpoints mientras el Ingress sigue existiendo?</div>
+  <div class="question-answer">
+    <b>Camino completo de la petición:</b>
+    <ol>
+      <li><b>Cliente / Navegador:</b> El cliente emite una petición HTTP GET a <code>http://tareas.localhost:8080/tareas</code>. El resolvedor DNS local resuelve <code>*.localhost</code> a la dirección de bucle invertido <code>127.0.0.1</code>.</li>
+      <li><b>Balanceador del Clúster k3d:</b> La petición ingresa al puerto 8080 del host, que k3d mapeó hacia el puerto 80 del contenedor proxy balanceador (<code>k3d-com600-serverlb</code>).</li>
+      <li><b>Controlador de Ingress (Traefik):</b> El balanceador reenvía el paquete TCP al Ingress Controller (Traefik) en ejecución dentro del clúster. Traefik evalúa las cabeceras HTTP, identificando la regla <code>host: tareas.localhost</code> y ruta <code>/</code>.</li>
+      <li><b>Service y Endpoints:</b> Traefik no enruta hacia la IP virtual del Service a ciegas, sino que consulta directamente los <b>Endpoints activos</b> asociados al Service <code>tareas</code> (las IPs de los pods saludables que pasaron la sonda readiness).</li>
+      <li><b>Pod y Proceso:</b> Traefik balancea y envía la petición a la IP interna del Pod (ej. <code>10.42.0.6:3000</code>). El kernel de Linux entrega el tráfico al socket de red del contenedor Node.js, donde el framework Express procesa la ruta <code>/tareas</code> y retorna el JSON con código HTTP 200.</li>
+    </ol>
+    <b>¿Qué ocurriría si el Service se queda sin endpoints?:</b>
+    <p>El Ingress sigue respondiendo a nivel HTTP, pero Traefik no encuentra ningún Pod saludable disponible en la lista de Endpoints. Al carecer de backends válidos para despachar la solicitud, Traefik responde inmediatamente al cliente con un código de error <b>HTTP 503 Service Unavailable</b> (o 502 Bad Gateway), indicando que la ruta existe pero no hay instancias listas para procesarla.</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h4>Laboratorio 4 — Configuración y secretos fuera de la imagen</h4>
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 10: salida de kubectl get secret -o yaml con el valor codificado visible.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_10.png" alt="Captura 10" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 11: salida de kubectl exec en un pod ejecutando env y mostrando las tres variables APP_.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_11.png" alt="Captura 11" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 12: la clave en texto plano recuperada desde el Secret con base64 -d.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_12.png" alt="Captura 12" />
+</div>
+
+<div class="question-box">
+  <div class="question-title">Pregunta N.º 5: Acaba de recuperar el secreto en texto plano sin ninguna credencial especial. Entonces, ¿qué problema resuelve realmente un Secret frente a escribir la clave en el Deployment, y qué haría falta agregar para que el valor esté verdaderamente protegido?</div>
+  <div class="question-answer">
+    <b>¿Qué problema resuelve un Secret?:</b>
+    <ol>
+      <li><b>Desacoplamiento y control de acceso (RBAC):</b> Un Secret desacopla las credenciales del ciclo de vida del manifiesto de la aplicación. Con las políticas de RBAC de Kubernetes, se puede otorgar a los desarrolladores permiso para editar y desplegar <code>Deployments</code> mientras se les restringe el acceso de lectura (<code>get</code>, <code>describe</code>) sobre el recurso <code>secrets</code>.</li>
+      <li><b>Prevención de fugas en el repositorio Git:</b> Escribir contraseñas en <code>deployment.yaml</code> causa que las credenciales queden expuestas públicamente o internamente en el historial del repositorio.</li>
+      <li><b>Almacenamiento volátil en memoria (tmpfs):</b> Cuando se monta un Secret como volumen, Kubernetes lo almacena en un sistema de archivos <code>tmpfs</code> en memoria RAM del nodo, evitando que las claves se graben en los discos magnéticos o SSD del servidor.</li>
+    </ol>
+    <b>¿Qué hace falta para protegerlo verdaderamente?:</b>
+    <p>Se debe habilitar <b>cifrado en reposo en etcd (Encryption at Rest)</b> mediante proveedores como AES-CBC o integración con un KMS en la nube (AWS KMS, Google Cloud KMS, Vault). Para GitOps se deben utilizar herramientas de cifrado asimétrico como <b>Sealed Secrets</b> (donde solo el clúster posee la clave privada para desencriptar) o <b>SOPS con age/PGP</b>, o bien delegar la inyección a gestores externos como <b>HashiCorp Vault</b> mediante el <i>External Secrets Operator</i>.</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h4>Laboratorio 5 — Sondas de salud y actualización progresiva</h4>
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 13: la lista de pods durante el rolling update, con réplicas de las dos versiones conviviendo.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_13.png" alt="Captura 13" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 14: las dos terminales: el bucle con códigos 200 continuos y el rollout ejecutándose al mismo tiempo.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_14.png" alt="Captura 14" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 15: el historial de revisiones y la salida de rollout undo con la imagen restaurada.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_15.png" alt="Captura 15" />
+</div>
+
+<div class="question-box">
+  <div class="question-title">Pregunta N.º 6: Explique con sus palabras qué habría pasado en ese bucle si el Deployment no tuviera readinessProbe. ¿En qué momento exacto habrían aparecido los errores y por qué?</div>
+  <div class="question-answer">
+    <p>Si el Deployment no tuviera <code>readinessProbe</code>, el bucle continuo de peticiones habría arrojado múltiples errores <b>HTTP 502 Bad Gateway</b>, <b>503 Service Unavailable</b> y conexiones rechazadas (Connection Refused).</p>
+    <p><b>Momento exacto del fallo y causa:</b> El fallo ocurre en el <b>mismo instante en que el contenedor nuevo alcanza el estado <code>Running</code> a nivel del motor de contenedores</b>, pero el proceso interno (Node.js/Express) todavía está en fase de arranque (cargando librerías, inicializando conexiones a bases de datos o enlazando el puerto TCP 3000). Sin la sonda de preparación, Kubernetes asume de inmediato que el pod está listo y añade su IP a los Endpoints del Service, comenzando a enviarle tráfico real y apagando réplicas de la versión previa. Al recibir peticiones antes de que el socket esté activo, las conexiones son rechazadas, causando cortes de servicio perceptibles para el usuario.</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h4>Laboratorio 6 — Empaquetar la aplicación con Helm</h4>
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 16: salida de helm install seguida de helm list con la versión 1 desplegada y los pods en Running.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_16.png" alt="Captura 16" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 17: salida de helm history con las tres revisiones y de helm list con las dos instalaciones del mismo chart.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_17.png" alt="Captura 17" />
+</div>
+
+<div class="question-box">
+  <div class="question-title">Pregunta N.º 7: El clúster ya sabía revertir un Deployment con rollout undo. ¿Qué revierte helm rollback que kubectl rollout undo no puede revertir? Piense en un cambio que afecte al Service y al Ingress a la vez.</div>
+  <div class="question-answer">
+    <p><code>kubectl rollout undo</code> opera con alcance exclusivo sobre un único objeto de tipo <code>Deployment</code> (modificando la imagen y pods del ReplicaSet anterior). No tiene visibilidad ni capacidad de gestión sobre otros recursos de Kubernetes.</p>
+    <p>Si una actualización introduce un cambio combinado (por ejemplo, cambiar el puerto del <code>Service</code> de 80 a 8080 y alterar la regla de host o path del <code>Ingress</code> de <code>/v1</code> a <code>/v2</code>), un <code>kubectl rollout undo</code> únicamente revertirá los pods, dejando el Service e Ingress en la versión nueva. Esto causa una desconexión y fallo total por incompatibilidad de puertos y rutas. En cambio, <b><code>helm rollback</code> revierte de manera atómica y coherente la totalidad del paquete (release)</b>, restaurando en una sola transacción el Deployment, el Service, el Ingress, los ConfigMaps y los Secrets a la versión previa exacta definida en ese release.</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h4>Laboratorio 7 — GitOps con Argo CD</h4>
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 18: la interfaz de Argo CD con la aplicación tareas en estado Synced y Healthy, mostrando el árbol de recursos.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_18.png" alt="Captura 18" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 19: el commit en GitHub y, al lado, los pods del clúster reflejando el nuevo número de réplicas.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_19.png" alt="Captura 19" />
+</div>
+
+<div class="capture-box">
+  <div class="capture-title">Captura N.º 20: la interfaz de Argo CD mostrando el estado OutOfSync y, a continuación, el retorno a Synced con las réplicas del repositorio.</div>
+  <img class="capture-img" src="/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias/captura_20.png" alt="Captura 20" />
+</div>
+
+<div class="question-box">
+  <div class="question-title">Pregunta N.º 8: Un compañero afirma que GitOps sirve para desplegar más rápido. Argumente por qué esa no es su ventaja principal y nombre dos problemas concretos de operación que sí resuelve. ¿Qué le habría pasado al rollout undo del Laboratorio 5 en este esquema?</div>
+  <div class="question-answer">
+    <b>¿Por qué la velocidad no es la ventaja principal de GitOps?:</b>
+    <p>El beneficio central de GitOps no es la velocidad en segundos de despliegue (la cual depende del pipeline de CI y descarga de imágenes), sino el establecimiento de <b>Git como única fuente de verdad inmutable (Single Source of Truth), la auditabilidad estricta y la convergencia continua del estado del clúster</b>.</p>
+    <b>Dos problemas concretos de operación que resuelve:</b>
+    <ol>
+      <li><b>Eliminación de la deriva de configuración (Configuration Drift) y cambios manuales no autorizados:</b> Resuelve los cambios que los operadores realizan directamente en producción por terminal (<code>kubectl edit</code>, <code>kubectl scale</code>) y que nunca se documentan. Con la directiva <code>selfHeal: true</code>, Argo CD detecta cualquier alteración no registrada en Git y la revierte automáticamente en segundos.</li>
+      <li><b>Recuperación instantánea ante desastres (Disaster Recovery):</b> Ante la pérdida total del clúster, no se requiere restaurar backups inconsistentes; simplemente se reinstala Argo CD apuntando al repositorio de Git para reconstruir íntegramente la arquitectura idéntica en minutos.</li>
+    </ol>
+    <b>¿Qué le habría pasado al rollout undo del Laboratorio 5?:</b>
+    <p>En el Laboratorio 5, <code>kubectl rollout undo</code> modificó el Deployment directamente en la memoria del clúster sin modificar el archivo en el repositorio. En un esquema GitOps con <code>selfHeal</code> habilitado, Argo CD habría detectado el estado como <code>OutOfSync</code> y, en el siguiente ciclo de reconciliación, <b>habría cancelado y sobreescrito el rollout undo manual</b>, restaurando las imágenes y parámetros declarados en la rama principal de Git. En GitOps, la única manera válida de revertir es mediante <code>git revert &lt;commit&gt;</code> y <code>git push</code>.</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h3>Cierre de la Parte 1</h3>
+<div class="closure-box">
+  <b>¿Qué parte de la práctica le resultó más difícil y por qué?</b>
+  <p>La integración inicial de Argo CD con la reconciliación automatizada y la correcta comprensión de las sondas de preparación frente a las de vivacidad. Inicialmente resulta contraintuitivo entender cómo un cambio manual ejecutado con <code>kubectl scale</code> es purgado por el operador en segundos para forzar el estado declarado en Git.</p>
+</div>
+
+<div class="closure-box">
+  <b>¿Qué error tuvo que resolver por su cuenta y cómo lo resolvió?</b>
+  <p>Durante la aplicación de los CRDs de Argo CD con <code>kubectl apply</code> se presentó un error de tamaño en las anotaciones (<i>metadata.annotations: Too long: may not be more than 262144 bytes</i> en <code>applicationsets.argoproj.io</code>). Se solucionó aplicando el comando mediante <code>kubectl apply --server-side --force-conflicts</code>, lo que delegó el cálculo de gestión de campos al API Server sin desbordar el buffer del cliente.</p>
+</div>
+
+<div class="closure-box">
+  <b>¿Qué haría distinto si tuviera que repetir esta práctica?</b>
+  <p>Configuraría desde el inicio un controlador de secretos sellados (Bitnami Sealed Secrets) para almacenar de forma cifrada las credenciales en el mismo repositorio de Git, evitando la necesidad de crear secretos imperativos manualmente antes de sincronizar la Application de Argo CD.</p>
+</div>
+
+<br><br>
+<p><b>Declaración de autoría:</b> Declaro que las capturas presentadas fueron tomadas en mi propio equipo y que las respuestas son de mi autoría. Entiendo que presentar evidencias de otra persona anula la Parte 1 de esta práctica.</p>
+
+<br><br>
+<table style="width: 100%; border: none; margin-top: 30px;">
+  <tr>
+    <td style="width: 50%; text-align: center; border: none;">
+      ___________________________________________<br>
+      <b>Flores Mosquera Saul Osvaldo</b><br>
+      Firma del estudiante
+    </td>
+    <td style="width: 50%; text-align: center; border: none;">
+      ___________________________________________<br>
+      <b>21 de Octubre de 2026</b><br>
+      Fecha
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

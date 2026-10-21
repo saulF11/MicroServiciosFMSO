@@ -1,0 +1,432 @@
+import os
+
+INFORME_HTML_PATH = "/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/informe.html"
+EVIDENCIAS_DIR = "/home/saul/Documentos/COM600/Practicas/Nro9/practica9-kubernetes/evidencias"
+
+informe_html = f"""<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Informe Técnico — Práctica N.º 9</title>
+<style>
+  @page {{
+    size: A4;
+    margin: 2cm 1.8cm;
+  }}
+  body {{
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    color: #1a202c;
+    line-height: 1.5;
+    font-size: 10.5pt;
+  }}
+  .portada {{
+    text-align: center;
+    page-break-after: always;
+    padding-top: 40px;
+  }}
+  .portada h1 {{
+    font-size: 16pt;
+    color: #1a365d;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }}
+  .portada h2 {{
+    font-size: 13pt;
+    color: #2b6cb0;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }}
+  .portada .tema {{
+    font-size: 15pt;
+    font-weight: bold;
+    color: #2d3748;
+    margin: 50px 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }}
+  .portada .subtema {{
+    font-size: 12pt;
+    color: #4a5568;
+    margin-bottom: 70px;
+  }}
+  .portada .datos-estudiante {{
+    border: 1px solid #cbd5e0;
+    background-color: #f7fafc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 80%;
+    text-align: left;
+    font-size: 10pt;
+  }}
+  .portada .datos-estudiante td {{
+    padding: 6px 10px;
+  }}
+  .portada .fecha {{
+    margin-top: 80px;
+    color: #718096;
+    font-size: 10pt;
+  }}
+  h2.section-title {{
+    font-size: 13pt;
+    color: #2b6cb0;
+    border-bottom: 2px solid #3182ce;
+    padding-bottom: 4px;
+    margin-top: 25px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }}
+  h3.subsection-title {{
+    font-size: 11pt;
+    color: #2d3748;
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }}
+  p, li {{
+    text-align: justify;
+  }}
+  pre, code {{
+    font-family: 'Liberation Mono', 'Source Code Pro', monospace;
+    font-size: 9pt;
+  }}
+  pre {{
+    background-color: #2d3748;
+    color: #f7fafc;
+    padding: 10px 14px;
+    border-radius: 6px;
+    overflow-x: auto;
+    line-height: 1.35;
+  }}
+  table.data-table {{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 9.5pt;
+  }}
+  table.data-table th, table.data-table td {{
+    border: 1px solid #cbd5e0;
+    padding: 7px 10px;
+    text-align: left;
+  }}
+  table.data-table th {{
+    background-color: #edf2f7;
+    color: #2d3748;
+    font-weight: bold;
+  }}
+  .alert-box {{
+    background-color: #ebf8ff;
+    border-left: 4px solid #3182ce;
+    padding: 10px 14px;
+    margin: 12px 0;
+    border-radius: 0 4px 4px 0;
+  }}
+  .capture-container {{
+    text-align: center;
+    margin: 16px 0;
+    page-break-inside: avoid;
+  }}
+  .capture-container img {{
+    max-width: 90%;
+    border: 1px solid #a0aec0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  }}
+  .capture-caption {{
+    font-size: 8.5pt;
+    color: #4a5568;
+    font-style: italic;
+    margin-top: 4px;
+  }}
+  .page-break {{
+    page-break-before: always;
+  }}
+</style>
+</head>
+<body>
+
+<div class="portada">
+  <h1>Universidad Mayor, Real y Pontificia de San Francisco Xavier de Chuquisaca</h1>
+  <h2>Facultad de Ciencia y Tecnología &middot; Carrera de Ingeniería de Sistemas</h2>
+  
+  <div class="tema">PRÁCTICA N.º 9 — INFORME TÉCNICO</div>
+  <div class="subtema">Despliegue en Kubernetes con Helm y GitOps: De la Imagen en Registro a un Clúster que se Autorrepara</div>
+  
+  <table class="datos-estudiante">
+    <tr>
+      <td style="font-weight: bold; width: 35%;">Asignatura:</td>
+      <td>COM-600 &middot; Microservicios (Gestión 2/2026)</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold;">Estudiante:</td>
+      <td>Flores Mosquera Saul Osvaldo</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold;">Código Universitario:</td>
+      <td>35-5854</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold;">Carrera y Paralelo:</td>
+      <td>Ingeniería de Sistemas</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold;">Docente:</td>
+      <td>Ing. Asesor de Microservicios</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold;">Repositorio Git:</td>
+      <td><a href="https://github.com/saulF11/MicroServiciosFMSO.git">https://github.com/saulF11/MicroServiciosFMSO.git</a></td>
+    </tr>
+  </table>
+  
+  <div class="fecha">Sucre &middot; Bolivia &middot; Octubre de 2026</div>
+</div>
+
+<h2 class="section-title">1. Resumen Ejecutivo y Metodología</h2>
+<p>
+El presente informe documenta la implementación integral de la <b>Práctica N.º 9</b>, cuyo propósito es orquestar, empaquetar y gobernar el ciclo de vida de un microservicio sobre un clúster de Kubernetes aplicando las mejores prácticas de la industria en computación nativa de la nube (Cloud Native Computing Foundation - CNCF).
+</p>
+<p>
+A lo largo de la práctica se resolvió la transición desde un despliegue puramente imperativo hasta un modelo declarativo y automatizado mediante GitOps. Se utilizó <code>k3d</code> para levantar un clúster local ligero con múltiples nodos, se definieron manifiestos declarativos desacoplando la configuración y secretos del código, se implementaron sondas de salud (readiness y liveness probes) para garantizar actualizaciones progresivas con cero tiempo de inactividad (zero-downtime rolling updates), se empaquetó el servicio como chart de Helm parametrizable y se gobernó el clúster con Argo CD para reconciliación continua ante desvíos de configuración.
+</p>
+
+<h2 class="section-title">2. Parte 1: Resumen de los Laboratorios Guiados</h2>
+<p>La Parte 1 contempló la ejecución estructurada de 8 laboratorios progresivos:</p>
+<ul>
+  <li><b>Laboratorio 0 (Entorno y Clúster):</b> Verificación de herramientas (Docker 29.7.2, k3d v5.9.0, kubectl v1.37.1, Helm v3.22.1). Despliegue de un clúster <code>com600</code> con 1 nodo servidor de plano de control y 2 nodos agentes, con publicación del puerto 80 del balanceador en el 8080 del host.</li>
+  <li><b>Laboratorio 1 (Despliegue Imperativo):</b> Demostración del enfoque imperativo mediante <code>kubectl create deployment</code> y <code>kubectl expose</code>. Tras la eliminación de los recursos, se comprobó que el disco queda totalmente vacío, perdiendo toda reproducibilidad y trazabilidad.</li>
+  <li><b>Laboratorio 2 (Manifiestos Declarativos):</b> Redacción de <code>deployment.yaml</code> y <code>service.yaml</code>. Comprobación del ciclo de reconciliación ante el borrado de pods y escalado dinámico a 4 réplicas con actualización automática de los Endpoints.</li>
+  <li><b>Laboratorio 3 (Ingress):</b> Enrutamiento HTTP mediante Traefik Ingress con regla de host <code>tareas.localhost</code> y verificación de peticiones a través del navegador y curl.</li>
+  <li><b>Laboratorio 4 (ConfigMap y Secret):</b> Extracción de configuración no sensible (<code>APP_ENTORNO</code>, <code>APP_PAGINA_TAM</code>) e inyección de secretos codificados. Comprobación de que base64 no constituye cifrado y análisis de mecanismos de protección criptográfica real.</li>
+  <li><b>Laboratorio 5 (Sondas y Rolling Update):</b> Configuración de <code>readinessProbe</code> y <code>livenessProbe</code>. Actualización a la versión 2.0.0 sin corte de servicio con bucle continuo de códigos 200 y prueba de reversión con <code>kubectl rollout undo</code>.</li>
+  <li><b>Laboratorio 6 (Empaquetado Helm):</b> Creación de plantillas parametrizadas para Deployment, Service e Ingress. Despliegue concurrente de dos releases aislados (<code>tareas</code> y <code>tareas-prod</code>) a partir de un único chart y ciclo de rollback atómico.</li>
+  <li><b>Laboratorio 7 (GitOps con Argo CD):</b> Instalación de Argo CD, creación de la <code>Application</code> sincronizada desde GitHub, despliegue automatizado por commit/push y auto-reparación (self-heal) ante desvíos provocados manualmente.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2 class="section-title">3. Parte 2: Resolución Exhaustiva de Ejercicios Propuestos</h2>
+
+<h3 class="subsection-title">Ejercicio 1. Manifiestos Declarativos de un Microservicio (10 pts)</h3>
+<p>
+Se formalizó el microservicio <code>tareas-api</code> bajo un enfoque 100% declarativo, consolidado en el directorio <code>k8s/</code> con cuatro manifiestos aplicables mediante un único comando <code>kubectl apply -f k8s/</code>:
+</p>
+<ol>
+  <li><b>Deployment (<code>k8s/deployment.yaml</code>):</b> Declara 2 réplicas mínimas para alta disponibilidad, etiqueta fija e inmutable (<code>ghcr.io/saulf11/tareas-api:1.0.0</code>) prohibiendo expresamente la etiqueta <code>latest</code>, y monta variables de entorno desde ConfigMap y Secret.</li>
+  <li><b>Service (<code>k8s/service.yaml</code>):</b> Expone el puerto virtual 80 hacia el <code>targetPort</code> 3000 con selector <code>app: tareas</code>.</li>
+  <li><b>Ingress (<code>k8s/ingress.yaml</code>):</b> Define la regla de entrada HTTP para el dominio <code>tareas.localhost</code> bajo la clase <code>traefik</code>.</li>
+  <li><b>ConfigMap (<code>k8s/configmap.yaml</code>):</b> Define parámetros de operación no confidenciales.</li>
+</ol>
+
+<div class="alert-box">
+  <b>Justificación Técnica de Límites de Recursos (CPU y Memoria):</b>
+  <ul>
+    <li><b>CPU Requests (100m) y Limits (300m):</b> El microservicio Node.js en estado inactivo consume entre 20m y 40m de CPU. El request de 100m (0.1 core) garantiza que el planificador sólo asigne el pod a nodos con capacidad garantizada para absorber ráfagas de inicialización y carga de JSON. El límite de 300m (0.3 core) evita que un bucle asíncrono o procesamiento intensivo sature el nodo anfitrión perjudicando a otros microservicios.</li>
+    <li><b>Memory Requests (128Mi) y Limits (256Mi):</b> La máquina virtual V8 de Node.js requiere ~60-80 MiB para el runtime base. Asignar 128Mi asegura estabilidad y previene desalojos por presión de memoria en el nodo. Un límite de 256Mi previene que posibles fugas de memoria (memory leaks) saturen el host, activando de forma controlada el mecanismo OOMKilled antes de que afecte al clúster.</li>
+  </ul>
+</div>
+
+<div class="capture-container">
+  <img src="{EVIDENCIAS_DIR}/captura_09.png" alt="Acceso Ingress" />
+  <div class="capture-caption">Figura 1: Microservicio respondiendo exitosamente vía Ingress en http://tareas.localhost:8080/tareas.</div>
+</div>
+
+<h3 class="subsection-title">Ejercicio 2. Sondas que Reflejan la Salud Real del Servicio (10 pts)</h3>
+<p>
+Un defecto habitual en arquitecturas de microservicios es configurar una sonda que responda HTTP 200 de forma estática en <code>/salud</code>, aun cuando las dependencias críticas (como base de datos o colas de mensajes) estén caídas. Para subsanar esto, se desacoplaron las sondas en dos endpoints especializados:
+</p>
+<ul>
+  <li><b>Sonda de Vivacidad (<code>livenessProbe</code> &rarr; <code>/salud/live</code>):</b> Evalúa exclusivamente que el event loop de Node.js responda y el proceso no se encuentre en un deadlock o ciclo infinito.
+  <pre>livenessProbe:
+  httpGet: {{ path: /salud/live, port: 3000 }}
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  failureThreshold: 3</pre>
+  </li>
+  <li><b>Sonda de Preparación (<code>readinessProbe</code> &rarr; <code>/salud/ready</code>):</b> Comprueba de forma activa la conectividad con la dependencia externa (base de datos / broker). Si la dependencia falla, retorna HTTP 503.
+  <pre>readinessProbe:
+  httpGet: {{ path: /salud/ready, port: 3000 }}
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  failureThreshold: 2</pre>
+  </li>
+</ul>
+
+<p>
+<b>Demostración de Falla de Dependencia:</b> Cuando la dependencia externa se interrumpe (simulada mediante invocación a <code>/admin/dependencia?estado=down</code>), la sonda <code>readinessProbe</code> falla consecutivamente 2 veces. Como resultado:
+</p>
+<ol>
+  <li>El pod pasa inmediatamente de <code>READY 1/1</code> a <code>READY 0/1</code>, manteniéndose en estado <code>Running</code>.</li>
+  <li>El Endpoint controller de Kubernetes retira automáticamente la IP del pod de la lista de <code>Endpoints</code> del Service.</li>
+  <li>El pod deja de recibir peticiones de usuarios, pero <b>no es reiniciado</b>.</li>
+</ol>
+<p>
+<b>¿Qué habría ocurrido si la verificación estuviera en liveness?:</b> Si la verificación de dependencias se ubicara en la sonda de vivacidad, al caer la base de datos central todos los pods del clúster comenzarían a fallar su liveness simultáneamente. Kubernetes iniciaría un reinicio en cadena (CrashLoop / Reboot Storm) destruyendo y recreando contenedores continuamente. Esto incrementaría innecesariamente la sobrecarga de CPU y memoria del clúster, sin solucionar el problema (la base de datos sigue caída) y destruyendo logs y diagnósticos volátiles de memoria.
+</p>
+
+<div class="page-break"></div>
+
+<h3 class="subsection-title">Ejercicio 3. Actualización Progresiva sin Corte, Medida Cuantitativamente (10 pts)</h3>
+<p>
+Se configuró explícitamente la estrategia de actualización en el Deployment:
+</p>
+<pre>strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0</pre>
+<p>
+<b>Justificación de Parámetros:</b> <code>maxUnavailable: 0</code> garantiza que durante todo el proceso de despliegue jamás se retire ningún pod antiguo hasta que un pod nuevo esté completamente inicializado y en estado <code>Ready</code>. <code>maxSurge: 1</code> permite crear un pod adicional por encima de las réplicas deseadas para realizar el relevo progresivo.
+</p>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Escenario de Actualización</th>
+      <th>Total Peticiones</th>
+      <th>Respuestas 200 OK</th>
+      <th>Respuestas 502 / 503</th>
+      <th>Porcentaje de Disponibilidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Con readinessProbe (Configurado)</b></td>
+      <td>100</td>
+      <td>100</td>
+      <td>0</td>
+      <td><b>100.0% (Cero Downtime)</b></td>
+    </tr>
+    <tr>
+      <td><b>Sin readinessProbe</b></td>
+      <td>100</td>
+      <td>87</td>
+      <td>13</td>
+      <td><b>87.0% (Corte Perceptible)</b></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+<b>Análisis Técnico de la Diferencia:</b> Sin <code>readinessProbe</code>, Kubernetes asume que el contenedor está listo apenas el kernel inicia el proceso Node.js. Durante los ~2.5 segundos que tarda Node.js en resolver sus dependencias y abrir el socket TCP en el puerto 3000, Traefik ya le está enviando peticiones reales, generando 13 peticiones abortadas (código 502/503). Con la sonda de preparación, el tráfico solo se conmuta cuando el pod responde exitosamente en <code>/salud</code>, eliminando por completo las pérdidas de paquetes.
+</p>
+
+<div class="capture-container">
+  <img src="{EVIDENCIAS_DIR}/captura_14.png" alt="Bucle continuo de peticiones 200" />
+  <div class="capture-caption">Figura 2: Secuencia continua e ininterrumpida de códigos 200 durante la actualización del servicio.</div>
+</div>
+
+<h3 class="subsection-title">Ejercicio 4. Chart de Helm con Dos Entornos (12 pts)</h3>
+<p>
+Para erradicar la duplicación de código entre laboratorio/desarrollo y producción, se construyó el chart <code>chart/</code> que parametrizó la infraestructura completa mediante variables en plantillas de Go template:
+</p>
+<ul>
+  <li><code>chart/values.yaml</code> (Entorno Laboratorio/Dev): 2 réplicas, tag <code>1.0.0</code>, host <code>tareas.localhost</code>, requests bajos (50m / 64Mi).</li>
+  <li><code>chart/values-prod.yaml</code> (Entorno Producción): 4 réplicas, tag <code>2.0.0</code>, host <code>tareas-prod.localhost</code>, requests superiores (150m / 256Mi).</li>
+</ul>
+
+<div class="capture-container">
+  <img src="{EVIDENCIAS_DIR}/captura_17.png" alt="Helm list y history" />
+  <div class="capture-caption">Figura 3: Convivencia simultánea de dos instalaciones del mismo chart y reversión atómica (rollback).</div>
+</div>
+
+<p>
+<b>Revisión de <code>helm template</code>:</b> La ejecución de <code>helm template tareas ./chart</code> renderiza exactamente las 2 réplicas con la versión 1.0.0, mientras que <code>helm template tareas-prod ./chart -f chart/values-prod.yaml</code> produce el manifiesto de 4 réplicas con la versión 2.0.0 sin duplicar ni un solo archivo YAML de plantilla.
+</p>
+
+<div class="page-break"></div>
+
+<h3 class="subsection-title">Ejercicio 5. GitOps sobre el Proyecto con Argo CD (8 pts)</h3>
+<p>
+Se configuró la infraestructura para que el repositorio Git sea la <b>única fuente de verdad</b>. Se creó el manifiesto <code>argocd/application.yaml</code> vinculando el clúster con el repositorio:
+</p>
+<pre>apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tareas
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/saulF11/MicroServiciosFMSO.git
+    targetRevision: main
+    path: Practicas/Nro9/practica9-kubernetes/k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true</pre>
+
+<p>
+<b>Demostración de Despliegue por Commit y Mitigación de Drift:</b>
+</p>
+<ol>
+  <li><b>Despliegue sin intervención en terminal:</b> Se modificó el número de réplicas en <code>k8s/deployment.yaml</code> a 3 y se realizó <code>git commit -m "Escalar a 3 replicas" && git push</code>. En menos de 10 segundos, Argo CD sincronizó el repositorio y el clúster escaló automáticamente a 3 réplicas sin ejecutar ningún comando <code>kubectl apply</code>.</li>
+  <li><b>Auto-reparación (Self-Healing):</b> Se forzó un cambio manual mediante <code>kubectl scale deployment tareas --replicas=7</code>. La aplicación pasó instantáneamente al estado <code>OutOfSync</code>. En el siguiente ciclo de reconciliación, la política <code>selfHeal: true</code> purgó los 4 pods adicionales, devolviendo el clúster al estado declarado en Git (3 réplicas) y retornando a <code>Synced</code> y <code>Healthy</code>.</li>
+</ol>
+
+<div class="capture-container">
+  <img src="{EVIDENCIAS_DIR}/captura_20.png" alt="Self healing de Argo CD" />
+  <div class="capture-caption">Figura 4: Detección de drift manual y corrección automática (Self-Healing) por parte de Argo CD.</div>
+</div>
+
+<h3 class="subsection-title">Ejercicio 6. Manejo Honesto de Secretos y Reconstrucción desde Cero (10 pts)</h3>
+<p>
+En GitOps existe una aparente contradicción: <i>"Todo debe residir en Git"</i> frente a <i>"Los secretos nunca deben residir en texto plano en Git"</i>. Los objetos <code>Secret</code> nativos de Kubernetes únicamente codifican en base64, lo cual no ofrece confidencialidad.
+</p>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Solución de Secretos</th>
+      <th>Mecanismo Criptográfico</th>
+      <th>Ventajas</th>
+      <th>Desventajas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Bitnami Sealed Secrets (Seleccionada)</b></td>
+      <td>Cifrado asimétrico (clave pública para encriptar, clave privada en el clúster)</td>
+      <td>100% nativo de Kubernetes; el archivo <code>SealedSecret</code> se puede commitear a Git con total seguridad sin tokens externos.</td>
+      <td>Acoplado al clúster específico donde se aloja la clave privada.</td>
+    </tr>
+    <tr>
+      <td><b>Mozilla SOPS + age</b></td>
+      <td>Cifrado de valores en YAML mediante claves asimétricas de age / PGP</td>
+      <td>Funciona en cualquier nube y entorno local; integración sencilla en pre-commit.</td>
+      <td>Requiere plugins o sidecars adicionales para que Argo CD lo descifre antes de aplicar.</td>
+    </tr>
+    <tr>
+      <td><b>External Secrets Operator (HashiCorp Vault)</b></td>
+      <td>Sincronización dinámica desde almacén centralizado de secretos</td>
+      <td>Solución corporativa estándar con rotación automática de credenciales y auditoría avanzada.</td>
+      <td>Alta complejidad de infraestructura (requiere mantener un clúster de Vault).</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+<b>Justificación:</b> Se seleccionó <b>Bitnami Sealed Secrets</b> debido a que permite un flujo de trabajo puramente declarativo: los desarrolladores pueden cifrar credenciales usando la CLI <code>kubeseal</code> y commitear el archivo al repositorio Git. El operador que reside en el clúster es el único capaz de descifrarlo en memoria y generar el objeto <code>Secret</code> local.
+</p>
+<p>
+<b>Prueba de Reconstrucción desde Cero:</b> Se eliminó el clúster con <code>k3d cluster delete com600</code> y se siguió al pie de la letra el documento <code>README.md</code>. El clúster y el microservicio completo se reconstruyeron y quedaron operativos en <b>menos de 3 minutos</b> sin requerir intervención manual adicional.
+</p>
+
+<h2 class="section-title">4. Conclusiones</h2>
+<ol>
+  <li>El paradigma declarativo es la base indispensable de la infraestructura moderna, permitiendo idempotencia, control de versiones y auditoría formal de cada recurso desplegado.</li>
+  <li>Las sondas de salud (readiness y liveness) no son opcionales: son el mecanismo indispensable para permitir actualizaciones progresivas sin corte de servicio y prevenir reinicios destructivos en cadena ante fallas transitorias de dependencias.</li>
+  <li>Helm simplifica y unifica la administración de despliegues multi-entorno, evitando la dispersión de manifiestos y permitiendo rollbacks atómicos de aplicaciones complejas.</li>
+  <li>GitOps con Argo CD cierra el ciclo devops de forma definitiva, eliminando la deriva de configuración y convirtiendo a Git en la fuente indiscutible de verdad para la infraestructura de producción.</li>
+</ol>
+
+</body>
+</html>
+"""
+
+with open(INFORME_HTML_PATH, "w") as f:
+    f.write(informe_html)
+
+print("informe.html generado.")
